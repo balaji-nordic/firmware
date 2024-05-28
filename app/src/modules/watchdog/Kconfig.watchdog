@@ -1,0 +1,23 @@
+#
+# Copyright (c) 2023 Nordic Semiconductor
+#
+# SPDX-License-Identifier: LicenseRef-Nordic-5-Clause
+#
+
+menu "Watchdog"
+
+config APP_WATCHDOG
+	bool
+	select TASK_WDT
+	select TASK_WDT_HW_FALLBACK
+	default y
+
+config APP_WATCHDOG_THREAD_STACK_SIZE
+	int "Thread stack size"
+	default 2048
+
+module = APP_WATCHDOG
+module-str = WATCHDOG
+source "subsys/logging/Kconfig.template.log_config"
+
+endmenu # Watchdog

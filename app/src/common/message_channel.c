@@ -65,3 +65,11 @@ ZBUS_CHAN_DEFINE(CLOUD_CHAN,
 		 ZBUS_OBSERVERS(fota, app, location),
 		 CLOUD_DISCONNECTED
 );
+
+ZBUS_CHAN_DEFINE(WATCHDOG_CHAN,
+		 int,
+		 NULL,
+		 NULL,
+		 ZBUS_OBSERVERS(fota, app, battery, location, environmental),
+		 ZBUS_MSG_INIT(0)
+);

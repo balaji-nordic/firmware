@@ -12,6 +12,10 @@ config APP_PAYLOAD_CHANNEL_STRING_MAX_SIZE
 	help
 	  Maximum size of the string included messages that are sent over the payload channel.
 
+config APP_GLOBAL_WATCHDOG_INTERVAL_SECONDS
+	int "Global watchdog interval in seconds"
+	default 10
+
 rsource "src/modules/trigger/Kconfig.trigger"
 rsource "src/modules/battery/Kconfig.battery"
 rsource "src/modules/network/Kconfig.network"
@@ -22,6 +26,7 @@ rsource "src/modules/led/Kconfig.led"
 rsource "src/modules/app/Kconfig.app"
 rsource "src/modules/fota/Kconfig.fota"
 rsource "src/modules/environmental/Kconfig.environmental"
+rsource "src/modules/watchdog/Kconfig.watchdog"
 
 endmenu
 

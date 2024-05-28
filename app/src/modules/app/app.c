@@ -80,6 +80,9 @@ static void wait_for_cloud_connection(void)
 				return;
 			}
 		}
+		if (&WATCHDOG_CHAN == chan) {
+			LOG_DBG("Watchdog feed trigger received");
+		}
 	}
 }
 
