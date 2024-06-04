@@ -141,7 +141,10 @@ K_THREAD_DEFINE(app_task_id,
 
 static int watchdog_init(void)
 {
-	__ASSERT((task_wdt_init(NULL) == 0), "Task watchdog init failure");
+	/* Get watchdog peripheral from device tree */
+	const struct device *hw_wdt = DEVICE_DT_GET(DT_NODELABEL(wdt0));
+
+	__ASSERT((task_wdt_init(hw_wdt) == 0), "Task watchdog init failure");
 
 	return 0;
 }
