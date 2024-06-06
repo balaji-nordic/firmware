@@ -1,6 +1,7 @@
 name: On_target
 
 on:
+  workflow_call:
   workflow_dispatch:
     inputs:
       run_test:
