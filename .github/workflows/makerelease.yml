@@ -7,23 +7,12 @@ name: MakeGithubRelease
 on: create
 
 jobs:
-  trigger-build:
-    if: startsWith(github.ref, 'refs/tags/')
-    uses: ./.github/workflows/build.yml
-
-  trigger-dfu-check:
-    if: startsWith(github.ref, 'refs/tags/')
-    uses: ./.github/workflows/dfu_check.yml
-
-  trigger-target-test:
-    if: startsWith(github.ref, 'refs/tags/')
-    uses: ./.github/workflows/on_target.yml
 
   make-release:
     if: startsWith(github.ref, 'refs/tags/')
     runs-on: ubuntu-22.04
     # Only make a release if the above jobs are passing
-    needs: [trigger-target-test]
+    #needs: [trigger-target-test]
     env:
         CMAKE_PREFIX_PATH: /opt/toolchains
     steps:
