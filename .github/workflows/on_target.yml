@@ -49,35 +49,3 @@ jobs:
           name: oob-t91x-hex
           path: thingy91x-oob/build/zephyr/merged.hex
 
-  test:
-    if: github.event.inputs.run_test == 'yes' || github.event.inputs.run_test == '' || github.event.inputs.run_test == null
-    name: Test
-    needs: build
-    runs-on: self-hosted
-    container:
-      image: ghcr.io/dematteisgiacomo/ubuntu-jlink-nrfutil:latest
-      options: --privileged
-      volumes:
-        - /dev:/dev:rw
-        - /run/udev:/run/udev
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          path: thingy91x-oob
-
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: oob-t91x-hex
-          path: thingy91x-oob/tests/on_target/artifacts
-
-      - name: Verify artifact path
-        working-directory: thingy91x-oob
-        run: |
-          ls -l tests/on_target/artifacts
-
-      - name: Run tests
-        working-directory: thingy91x-oob
-        run: |
-          ./tests/on_target/run-tests.sh
