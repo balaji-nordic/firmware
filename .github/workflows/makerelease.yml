@@ -33,7 +33,7 @@ jobs:
             workflow: on_target.yml
             workflow_conclusion: success
             name: oob-t91x-hex
-            run_id: ${{ github.event.workflow_run.id }}
+            run_id: 9407009047
 
         - name: Deploy release to github
           uses: softprops/action-gh-release@v1
