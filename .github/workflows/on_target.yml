@@ -1,6 +1,7 @@
 name: On_target
 
 on:
+  workflow_call:
   workflow_dispatch:
     inputs:
       run_test:
@@ -47,8 +48,11 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: oob-t91x-hex
-          path: thingy91x-oob/build/zephyr/merged.hex
+          name: oob-t91x
+          if-no-files-found: error
+          path: |
+            thingy91x-oob/build/merged.hex
+            thingy91x-oob/build/app/zephyr/zephyr.signed.bin
 
   test:
     if: github.event.inputs.run_test == 'yes' || github.event.inputs.run_test == '' || github.event.inputs.run_test == null
