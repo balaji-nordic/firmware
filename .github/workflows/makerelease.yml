@@ -37,5 +37,7 @@ jobs:
           uses: softprops/action-gh-release@v1
           with:
             fail_on_unmatched_files: true
+            name: oob-t91x-hex
+            run_id: ${{ github.event.workflow_run.id }}
             files: |
               merged.hex
