@@ -1,31 +1,24 @@
-# Workflow that makes a github release.
-name: MakeGithubRelease
+# Workflow that attaches additional assets to github release.
+name: Attach Release Assets
 
-# Trigger the workflow when a new branch or a tag is created.
-# There is no separate event for a creation of tag. But we choose to run the steps in this
-# workflow only when the github ref was a tag.
-on: create
+on:
+  release:
+    types: [created]
 
 jobs:
   trigger-build:
-    if: startsWith(github.ref, 'refs/tags/')
     uses: ./.github/workflows/build.yml
 
   trigger-dfu-check:
-    if: startsWith(github.ref, 'refs/tags/')
     uses: ./.github/workflows/dfu_check.yml
 
   trigger-target-test:
-    if: startsWith(github.ref, 'refs/tags/')
     uses: ./.github/workflows/on_target.yml
 
-  make-release:
-    if: startsWith(github.ref, 'refs/tags/')
+  attach-assets:
     runs-on: ubuntu-22.04
     # Only make a release if the above jobs are passing
     needs: [trigger-build, trigger-dfu-check, trigger-target-test]
-    env:
-        CMAKE_PREFIX_PATH: /opt/toolchains
     steps:
         - name: Download artifact
           uses: actions/download-artifact@v4
