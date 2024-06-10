@@ -34,7 +34,6 @@ jobs:
         run: |
             west init -l .
             west config manifest.group-filter +bsec
-            west config build.sysbuild True
             west update -o=--depth=1 -n
 
       - name: Install dependencies

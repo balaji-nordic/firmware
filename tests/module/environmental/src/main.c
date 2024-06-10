@@ -121,6 +121,7 @@ void test_all_zeroes(void)
 void test_only_timestamp(void)
 {
 	int not_used = -1;
+
 	int err;
 
 	date_time_uptime_to_unix_time_ms_fake.custom_fake =
