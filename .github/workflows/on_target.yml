@@ -11,7 +11,7 @@ on:
         type: select
         options:
           - yes
-          - no
+          - yes (with test)
   schedule:
     - cron: "0 0 * * *"
 
