@@ -25,11 +25,6 @@ jobs:
           with:
            name: oob-t91x
 
-        - name: Rename artifacts
-          run: |
-            mv merged.hex hello.nrfcloud.com-${{ github.ref_name }}-thingy91x-debug-app.hex
-            mv app/zephyr/zephyr.signed.bin hello.nrfcloud.com-${{ github.ref_name }}-thingy91x-debug-app_update_signed.bin
-
         - name: Deploy release to github
           uses: softprops/action-gh-release@v1
           with:
