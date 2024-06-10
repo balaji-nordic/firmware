@@ -56,7 +56,7 @@ jobs:
           cp app/zephyr/zephyr.signed.bin hello.nrfcloud.com-${{ env.VERSION }}-thingy91x-debug-app_update_signed.bin
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: firmware
           if-no-files-found: error
